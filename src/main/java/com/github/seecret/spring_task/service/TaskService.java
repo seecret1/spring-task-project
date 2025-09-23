@@ -3,8 +3,6 @@ package com.github.seecret.spring_task.service;
 import com.github.seecret.spring_task.mapper.TaskMapper;
 import com.github.seecret.spring_task.repository.TaskRepository;
 import com.github.seecret.spring_task.task.Task;
-import com.github.seecret.spring_task.task.TaskEntity;
-import lombok.var;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
