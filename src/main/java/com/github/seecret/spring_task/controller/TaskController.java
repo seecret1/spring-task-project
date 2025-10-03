@@ -1,13 +1,17 @@
 package com.github.seecret.spring_task.controller;
 
+import com.github.seecret.spring_task.filter.TaskSearchByFilter;
 import com.github.seecret.spring_task.service.TaskService;
 import com.github.seecret.spring_task.dto.Task;
+import com.github.seecret.spring_task.task_enum.TaskPriority;
+import com.github.seecret.spring_task.task_enum.TaskStatus;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -20,9 +24,23 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping
-    public ResponseEntity<List<Task>> findAllTask() {
-        log.info("[Controller] find all task");
-        return ResponseEntity.ok(taskService.findAllTasks());
+    public ResponseEntity<List<Task>> findAllTask(
+            @RequestParam(name = "creatorId", required = false) Long creatorId,
+            @RequestParam(name = "status", required = false) TaskStatus status,
+            @RequestParam(name = "priority", required = false) TaskPriority priority,
+            @RequestParam(name = "pageSize", required = false) Integer pageSize,
+            @RequestParam(name = "pageNumber", required = false) Integer pageNumber
+            ) {
+        log.info("[Controller] find all tasks using filter");
+        var filter = new TaskSearchByFilter(
+                creatorId,
+                status,
+                priority,
+                pageSize,
+                pageNumber
+        );
+
+        return ResponseEntity.ok(taskService.findAllTasks(filter));
     }
 
     @GetMapping("/{id}")

@@ -9,3 +9,8 @@ spring:
   jpa:
     generate-ddl: true
     show-sql: false
+
+task:
+  page:
+    size: 10
+    number: 0

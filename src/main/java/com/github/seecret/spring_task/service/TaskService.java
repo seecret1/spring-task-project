@@ -1,5 +1,6 @@
 package com.github.seecret.spring_task.service;
 
+import com.github.seecret.spring_task.filter.TaskSearchByFilter;
 import com.github.seecret.spring_task.mapper.TaskMapper;
 import com.github.seecret.spring_task.repository.TaskRepository;
 import com.github.seecret.spring_task.dto.Task;
@@ -7,6 +8,8 @@ import com.github.seecret.spring_task.entity.TaskEntity;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,16 +23,35 @@ public class TaskService {
 
     private final TaskMapper mapper;
 
+    @Value("${task.page.size}")
+    private int pageableSize;
+
+    @Value("${task.page.number}")
+    private int pageableNumber;
+
     public TaskService(TaskRepository repository, TaskMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
 
-    public List<Task> findAllTasks() {
+    public List<Task> findAllTasks(
+            TaskSearchByFilter filter
+    ) {
+        int pageSize = filter.pageSize() != null
+                ? filter.pageSize() : pageableSize;
+        int pageNum = filter.pageNumber() != null
+                ? filter.pageNumber() : pageableNumber;
+
+        var pageable = Pageable.ofSize(pageSize).withPage(pageNum);
+
+        List<TaskEntity> taskEntities = repository.searchTaskByFilter(
+                filter.creatorId(),
+                filter.status(),
+                filter.priority(),
+                pageable
+        );
+
         log.info("[Service] Find all tasks");
-
-        List<TaskEntity> taskEntities = repository.findAll();
-
         return taskEntities.stream()
                 .map(mapper::toTask)
                 .toList();
