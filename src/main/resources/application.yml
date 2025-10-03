@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/task_db
+    username: admin
+    password: admin
+    hikari:
+      schema: task_db
+      connection-init-sql: CREATE SCHEMA IF NOT EXISTS task_db
+  jpa:
+    generate-ddl: true
+    show-sql: false

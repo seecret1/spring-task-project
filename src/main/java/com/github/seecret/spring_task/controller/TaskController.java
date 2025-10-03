@@ -1,7 +1,7 @@
 package com.github.seecret.spring_task.controller;
 
 import com.github.seecret.spring_task.service.TaskService;
-import com.github.seecret.spring_task.task.Task;
+import com.github.seecret.spring_task.dto.Task;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,13 +15,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TaskController {
 
-    private final Logger LOG = LoggerFactory.getLogger(TaskController.class);
+    private final Logger log = LoggerFactory.getLogger(TaskController.class);
 
     private final TaskService taskService;
 
     @GetMapping
     public ResponseEntity<List<Task>> findAllTask() {
-        LOG.info("find all task");
+        log.info("[Controller] find all task");
         return ResponseEntity.ok(taskService.findAllTasks());
     }
 
@@ -29,6 +29,7 @@ public class TaskController {
     public ResponseEntity<Task> findTaskById(
             @PathVariable Long id
     ) {
+        log.info("[Controller] find task by id: {}", id);
         return ResponseEntity.ok(taskService.findById(id));
     }
 
@@ -36,21 +37,24 @@ public class TaskController {
     public ResponseEntity<Task> createTask(
             @RequestBody Task task
     ) {
+        log.info("[Controller] create task: {}", task);
         return ResponseEntity.ok(taskService.create(task));
     }
 
-    @PostMapping("/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Task> updateTask(
             @PathVariable Long id,
             @RequestBody Task task
     ) {
+        log.info("[Controller] update task by id: {}", id);
         return ResponseEntity.ok(taskService.update(id, task));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Task> deleteTask(
-            Long id
+            @PathVariable Long id
     ) {
+        log.info("[Controller] delete task by id: {}", id);
         taskService.delete(id);
         return ResponseEntity.noContent().build();
     }

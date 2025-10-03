@@ -1,15 +1,13 @@
-package com.github.seecret.spring_task.task;
+package com.github.seecret.spring_task.dto;
 
 import com.github.seecret.spring_task.task_enum.TaskPriority;
 import com.github.seecret.spring_task.task_enum.TaskStatus;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 public class Task {
 
@@ -21,9 +19,9 @@ public class Task {
 
     private TaskStatus status;
 
-    private LocalDateTime createdDataTime;
+    private LocalDate createdDate;
 
-    private LocalDateTime deadlineDate;
+    private LocalDate deadlineDate;
 
     private TaskPriority priority;
 }

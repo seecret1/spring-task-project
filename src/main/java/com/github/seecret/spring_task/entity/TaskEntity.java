@@ -1,4 +1,4 @@
-package com.github.seecret.spring_task.task;
+package com.github.seecret.spring_task.entity;
 
 import com.github.seecret.spring_task.task_enum.TaskPriority;
 import com.github.seecret.spring_task.task_enum.TaskStatus;
@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -30,16 +30,16 @@ public class TaskEntity {
     private Long assignedUserId;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private TaskStatus status;
 
-    @Column(name = "created_data_time")
-    private LocalDateTime createdDataTime;
+    @Column(name = "created_date")
+    private LocalDate createdDate;
 
     @Column(name = "deadline_date")
-    private LocalDateTime deadlineDate;
+    private LocalDate deadlineDate;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "priority")
+    @Column(name = "priority", nullable = false)
     private TaskPriority priority;
 }
