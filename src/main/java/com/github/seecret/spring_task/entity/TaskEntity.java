@@ -1,7 +1,7 @@
 package com.github.seecret.spring_task.entity;
 
-import com.github.seecret.spring_task.task_enum.TaskPriority;
-import com.github.seecret.spring_task.task_enum.TaskStatus;
+import com.github.seecret.spring_task.dto.task.TaskPriority;
+import com.github.seecret.spring_task.dto.task.TaskStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

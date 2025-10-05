@@ -1,6 +1,6 @@
 package com.github.seecret.spring_task.mapper;
 
-import com.github.seecret.spring_task.dto.User;
+import com.github.seecret.spring_task.dto.user.User;
 import com.github.seecret.spring_task.entity.UserEntity;
 import org.springframework.stereotype.Component;
 

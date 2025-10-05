@@ -1,4 +1,4 @@
-package com.github.seecret.spring_task.task_enum;
+package com.github.seecret.spring_task.dto.task;
 
 public enum TaskStatus {
 

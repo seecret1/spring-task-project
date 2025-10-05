@@ -1,10 +1,9 @@
 package com.github.seecret.spring_task.repository;
 
 import com.github.seecret.spring_task.entity.TaskEntity;
-import com.github.seecret.spring_task.task_enum.TaskPriority;
-import com.github.seecret.spring_task.task_enum.TaskStatus;
+import com.github.seecret.spring_task.dto.task.TaskPriority;
+import com.github.seecret.spring_task.dto.task.TaskStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;

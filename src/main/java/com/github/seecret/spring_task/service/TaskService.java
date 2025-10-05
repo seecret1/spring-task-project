@@ -3,7 +3,7 @@ package com.github.seecret.spring_task.service;
 import com.github.seecret.spring_task.filter.TaskSearchByFilter;
 import com.github.seecret.spring_task.mapper.TaskMapper;
 import com.github.seecret.spring_task.repository.TaskRepository;
-import com.github.seecret.spring_task.dto.Task;
+import com.github.seecret.spring_task.dto.task.Task;
 import com.github.seecret.spring_task.entity.TaskEntity;
 import jakarta.persistence.EntityNotFoundException;
 import org.slf4j.Logger;

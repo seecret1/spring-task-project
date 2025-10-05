@@ -1,6 +1,6 @@
 package com.github.seecret.spring_task.controller;
 
-import com.github.seecret.spring_task.dto.User;
+import com.github.seecret.spring_task.dto.user.User;
 import com.github.seecret.spring_task.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;

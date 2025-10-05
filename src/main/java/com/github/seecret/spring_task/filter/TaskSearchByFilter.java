@@ -1,9 +1,7 @@
 package com.github.seecret.spring_task.filter;
 
-import com.github.seecret.spring_task.task_enum.TaskPriority;
-import com.github.seecret.spring_task.task_enum.TaskStatus;
-
-import java.time.LocalDate;
+import com.github.seecret.spring_task.dto.task.TaskPriority;
+import com.github.seecret.spring_task.dto.task.TaskStatus;
 
 public record TaskSearchByFilter(
 

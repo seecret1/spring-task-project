@@ -1,6 +1,6 @@
 package com.github.seecret.spring_task.service;
 
-import com.github.seecret.spring_task.dto.User;
+import com.github.seecret.spring_task.dto.user.User;
 import com.github.seecret.spring_task.entity.UserEntity;
 import com.github.seecret.spring_task.mapper.UserMapper;
 import com.github.seecret.spring_task.repository.UserRepository;

@@ -1,4 +1,4 @@
-package com.github.seecret.spring_task.dto;
+package com.github.seecret.spring_task.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
