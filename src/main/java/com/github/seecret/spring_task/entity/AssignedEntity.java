@@ -20,8 +20,8 @@ public class AssignedEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "taskId")
-    private String taskId;
+    @Column(name = "task_id")
+    private Long taskId;
 
     @Column(name = "first_name_and_last_name")
     private String firstNameAndLastName;

@@ -64,6 +64,7 @@ public class UserService {
 
         var userToSave = mapper.toUserEntity(userToUpdate);
         repository.save(userToSave);
+        userToSave.setId(id);
         return mapper.toUser(userToSave);
     }
 
