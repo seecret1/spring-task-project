@@ -6,19 +6,17 @@ import com.github.seecret.spring_task.dto.task.Task;
 import com.github.seecret.spring_task.dto.task.TaskPriority;
 import com.github.seecret.spring_task.dto.task.TaskStatus;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/tasks")
 @RequiredArgsConstructor
 public class TaskController {
-
-    private final Logger log = LoggerFactory.getLogger(TaskController.class);
 
     private final TaskService taskService;
 

@@ -2,33 +2,48 @@ package com.github.seecret.spring_task.service;
 
 import com.github.seecret.spring_task.dto.assigned.Assigned;
 import com.github.seecret.spring_task.entity.AssignedEntity;
+import com.github.seecret.spring_task.filter.AssignedSearchByFilter;
 import com.github.seecret.spring_task.mapper.AssignedMapper;
 import com.github.seecret.spring_task.repository.AssignedRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class AssignedService {
-
-    private static final Logger log = LoggerFactory.getLogger(AssignedService.class);
 
     private final AssignedRepository repository;
 
     private final AssignedMapper mapper;
 
-    public AssignedService(AssignedRepository repository, AssignedMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
-
-    public List<Assigned> findAll() {
+    public List<Assigned> findAll(
+            AssignedSearchByFilter filter
+    ) {
         log.info("[Service] Find all assigneds");
 
-        List<AssignedEntity> assigneds = repository.findAll();
+        int pageSize = filter.pageSize() != null
+                ? filter.pageSize()
+                : 10;
+        int pageNum = filter.pageNumber() != null
+                ? filter.pageNumber()
+                : 0;
+        Pageable pageable = PageRequest.of(pageNum, pageSize);
+
+        List<AssignedEntity> assigneds = repository.searchAssignedByFilter(
+                filter.taskId(),
+                filter.firstNameAndLastName(),
+                filter.email(),
+                filter.phone(),
+                filter.position(),
+                pageable
+        );
         return assigneds
                 .stream()
                 .map(mapper::toAssigned)

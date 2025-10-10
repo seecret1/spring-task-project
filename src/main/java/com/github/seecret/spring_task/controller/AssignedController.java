@@ -1,28 +1,46 @@
 package com.github.seecret.spring_task.controller;
 
 import com.github.seecret.spring_task.dto.assigned.Assigned;
+import com.github.seecret.spring_task.dto.assigned.AssignedPosition;
+import com.github.seecret.spring_task.filter.AssignedSearchByFilter;
 import com.github.seecret.spring_task.service.AssignedService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/assigned")
 @RequiredArgsConstructor
 public class AssignedController {
 
-    private static final Logger log = LoggerFactory.getLogger(AssignedController.class);
-
     private final AssignedService assignedService;
 
     @GetMapping
-    public ResponseEntity<List<Assigned>> findAllAssigneds() {
+    public ResponseEntity<List<Assigned>> findAllAssigneds(
+            @RequestParam("taskId") Long taskId,
+            @RequestParam("firstNameAndLastName") String firstNameAndLastName,
+            @RequestParam("email") String email,
+            @RequestParam("phone") String phone,
+            @RequestParam("position") AssignedPosition position,
+            @RequestParam("pageSize") Integer pageSize,
+            @RequestParam("pageNumber") Integer pageNumber
+            ) {
         log.info("[Controller] find all assigneds");
-        return ResponseEntity.ok(assignedService.findAll());
+
+        AssignedSearchByFilter filter = new AssignedSearchByFilter(
+                taskId,
+                firstNameAndLastName,
+                email,
+                phone,
+                position,
+                pageSize,
+                pageNumber
+        );
+        return ResponseEntity.ok(assignedService.findAll(filter));
     }
 
     @GetMapping("/{id}")

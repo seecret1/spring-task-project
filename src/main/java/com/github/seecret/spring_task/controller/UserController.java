@@ -3,19 +3,17 @@ package com.github.seecret.spring_task.controller;
 import com.github.seecret.spring_task.dto.user.User;
 import com.github.seecret.spring_task.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/users")
 @RequiredArgsConstructor
 public class UserController {
-
-    private static final Logger log = LoggerFactory.getLogger(UserController.class);
 
     private final UserService userService;
 

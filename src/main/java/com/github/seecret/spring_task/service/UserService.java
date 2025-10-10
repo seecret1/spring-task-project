@@ -5,25 +5,20 @@ import com.github.seecret.spring_task.entity.UserEntity;
 import com.github.seecret.spring_task.mapper.UserMapper;
 import com.github.seecret.spring_task.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class UserService {
-
-    private static final Logger log = LoggerFactory.getLogger(UserService.class);
 
     private final UserRepository repository;
 
     private final UserMapper mapper;
-
-    public UserService(UserRepository repository, UserMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
 
     public List<User> findAllUsers() {
         log.info("[Service] find all users");

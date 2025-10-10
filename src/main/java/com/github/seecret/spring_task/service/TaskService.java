@@ -6,8 +6,8 @@ import com.github.seecret.spring_task.repository.TaskRepository;
 import com.github.seecret.spring_task.dto.task.Task;
 import com.github.seecret.spring_task.entity.TaskEntity;
 import jakarta.persistence.EntityNotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,9 +15,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@Slf4j
+@RequiredArgsConstructor
 public class TaskService {
-
-    private static final Logger log = LoggerFactory.getLogger(TaskService.class);
 
     private final TaskRepository repository;
 
@@ -28,11 +28,6 @@ public class TaskService {
 
     @Value("${task.page.number}")
     private int pageableNumber;
-
-    public TaskService(TaskRepository repository, TaskMapper mapper) {
-        this.repository = repository;
-        this.mapper = mapper;
-    }
 
     public List<Task> findAllTasks(
             TaskSearchByFilter filter
