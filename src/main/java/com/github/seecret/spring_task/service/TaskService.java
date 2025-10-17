@@ -40,7 +40,6 @@ public class TaskService {
         var pageable = Pageable.ofSize(pageSize).withPage(pageNum);
 
         List<TaskEntity> taskEntities = repository.searchTaskByFilter(
-                filter.creatorId(),
                 filter.status(),
                 filter.priority(),
                 pageable
@@ -58,7 +57,7 @@ public class TaskService {
         TaskEntity taskEntity = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("[Service] Task not found with id = " + id));
 
-        return mapper.toTask(taskEntity);
+        return mapper.toTaskWithoutUser(taskEntity);
     }
 
     public Task create(Task taskToCreate) {

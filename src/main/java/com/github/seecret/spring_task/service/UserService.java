@@ -35,7 +35,7 @@ public class UserService {
         UserEntity userEntity = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("[Service] not found user by id=" + id));
 
-        return mapper.toUser(userEntity);
+        return mapper.toUserWithoutTasks(userEntity);
     }
 
     public User create(User userToCreate) {
@@ -48,7 +48,7 @@ public class UserService {
 
         log.info("[Service] create user {}", userToCreate);
 
-        var userToSave = mapper.toUserEntity(userToCreate);
+        var userToSave = mapper.toEntity(userToCreate);
         repository.save(userToSave);
 
         return mapper.toUser(userToSave);
@@ -57,7 +57,7 @@ public class UserService {
     public User update(Long id, User userToUpdate) {
         log.info("[Service] update user by id={}", userToUpdate.getId());
 
-        var userToSave = mapper.toUserEntity(userToUpdate);
+        var userToSave = mapper.toEntity(userToUpdate);
         repository.save(userToSave);
         userToSave.setId(id);
         return mapper.toUser(userToSave);

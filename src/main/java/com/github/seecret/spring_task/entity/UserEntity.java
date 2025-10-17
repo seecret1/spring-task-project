@@ -1,10 +1,13 @@
 package com.github.seecret.spring_task.entity;
 
+import com.github.seecret.spring_task.dto.task.Task;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "usr")
@@ -24,4 +27,8 @@ public class UserEntity {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+    mappedBy = "user")
+    private List<TaskEntity> tasks;
 }

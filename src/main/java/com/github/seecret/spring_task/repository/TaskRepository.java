@@ -16,21 +16,17 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<TaskEntity, Long> {
 
     @Query(value = "SELECT t FROM TaskEntity t " +
-            "WHERE (:creatorId < t.creatorId " +
-            "AND (:createdDate < t.deadlineDate) " +
+            "WHERE (:createdDate < t.deadlineDate " +
             "AND (t.createdDate < :deadlineDate))")
     List<TaskEntity> searchTaskByDate(
-            @Param("creatorId") Long creatorId,
             @Param("createdDate") LocalDate createdDate,
             @Param("deadlineDate") LocalDate deadlineDate
     );
 
     @Query(value = "SELECT t FROM TaskEntity t " +
-            "WHERE ((:creatorId IS NULL OR t.creatorId = :creatorId) " +
-            "AND (:status IS NULL OR t.status = :status) " +
+            "WHERE (:status IS NULL OR t.status = :status " +
             "AND (:priority IS NULL OR t.priority = :priority))")
     List<TaskEntity> searchTaskByFilter(
-            @Param("creatorId") Long creatorId,
             @Param("status") TaskStatus status,
             @Param("priority") TaskPriority priority,
             Pageable pageable

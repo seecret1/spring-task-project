@@ -5,8 +5,6 @@ import com.github.seecret.spring_task.dto.task.TaskStatus;
 
 public record TaskSearchByFilter(
 
-        Long creatorId,
-
         TaskStatus status,
 
         TaskPriority priority,

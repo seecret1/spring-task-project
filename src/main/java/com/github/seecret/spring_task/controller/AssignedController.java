@@ -21,7 +21,6 @@ public class AssignedController {
 
     @GetMapping
     public ResponseEntity<List<Assigned>> findAllAssigneds(
-            @RequestParam("taskId") Long taskId,
             @RequestParam("firstNameAndLastName") String firstNameAndLastName,
             @RequestParam("email") String email,
             @RequestParam("phone") String phone,
@@ -32,7 +31,6 @@ public class AssignedController {
         log.info("[Controller] find all assigneds");
 
         AssignedSearchByFilter filter = new AssignedSearchByFilter(
-                taskId,
                 firstNameAndLastName,
                 email,
                 phone,

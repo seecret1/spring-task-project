@@ -30,7 +30,6 @@ public class TaskController {
             ) {
         log.info("[Controller] find all tasks using filter");
         var filter = new TaskSearchByFilter(
-                creatorId,
                 status,
                 priority,
                 pageSize,

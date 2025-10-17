@@ -37,7 +37,6 @@ public class AssignedService {
         Pageable pageable = PageRequest.of(pageNum, pageSize);
 
         List<AssignedEntity> assigneds = repository.searchAssignedByFilter(
-                filter.taskId(),
                 filter.firstNameAndLastName(),
                 filter.email(),
                 filter.phone(),

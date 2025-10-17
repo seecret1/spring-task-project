@@ -12,13 +12,11 @@ import java.util.List;
 public interface AssignedRepository extends JpaRepository<AssignedEntity, Long> {
 
     @Query(value = "SELECT a FROM AssignedEntity a " +
-            "WHERE ((:taskId = a.taskId) " +
-            "AND (:firstNameAndLastName = a.firstNameAndLastName) " +
+            "WHERE (:firstNameAndLastName = a.firstNameAndLastName " +
             "AND (:email = a.email) " +
             "AND (:phone = a.phone) " +
             "AND (:position = a.position))")
     List<AssignedEntity> searchAssignedByFilter(
-            @Param("taskId") Long taskId,
             @Param("firstNameAndLastName") String firstNameAndLastName,
             @Param("email") String email,
             @Param("phone") String phone,

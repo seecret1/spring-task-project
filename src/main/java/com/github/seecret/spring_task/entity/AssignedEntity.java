@@ -20,8 +20,8 @@ public class AssignedEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "task_id")
-    private Long taskId;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private TaskEntity task;
 
     @Column(name = "first_name_and_last_name")
     private String firstNameAndLastName;

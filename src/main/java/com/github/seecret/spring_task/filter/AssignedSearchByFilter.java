@@ -4,8 +4,6 @@ import com.github.seecret.spring_task.dto.assigned.AssignedPosition;
 
 public record AssignedSearchByFilter(
 
-        Long taskId,
-
         String firstNameAndLastName,
 
         String email,

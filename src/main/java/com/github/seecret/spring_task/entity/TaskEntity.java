@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,11 +24,8 @@ public class TaskEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "creator_id")
-    private Long creatorId;
-
-    @Column(name = "assigned_user_id")
-    private Long assignedUserId;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    private UserEntity user;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
@@ -42,4 +40,8 @@ public class TaskEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "priority", nullable = false)
     private TaskPriority priority;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+    mappedBy = "task")
+    private List<AssignedEntity> assigneds;
 }
