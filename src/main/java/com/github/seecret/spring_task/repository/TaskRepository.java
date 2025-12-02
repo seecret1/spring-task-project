@@ -1,5 +1,6 @@
 package com.github.seecret.spring_task.repository;
 
+import com.github.seecret.spring_task.entity.AssignedEntity;
 import com.github.seecret.spring_task.entity.TaskEntity;
 import com.github.seecret.spring_task.dto.task.TaskPriority;
 import com.github.seecret.spring_task.dto.task.TaskStatus;

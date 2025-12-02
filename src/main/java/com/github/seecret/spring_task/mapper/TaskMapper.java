@@ -27,6 +27,7 @@ public class TaskMapper {
     public Task toTask(TaskEntity taskEntity) {
         Task task = new Task();
         task.setId(taskEntity.getId());
+        task.setUserId(taskEntity.getUser().getId());
         task.setStatus(taskEntity.getStatus());
         task.setCreatedDate(taskEntity.getCreatedDate());
         task.setDeadlineDate(taskEntity.getDeadlineDate());

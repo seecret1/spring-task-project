@@ -25,6 +25,7 @@ public class TaskEntity {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     @Enumerated(EnumType.STRING)

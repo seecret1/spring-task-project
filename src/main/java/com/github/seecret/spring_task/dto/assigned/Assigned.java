@@ -1,6 +1,5 @@
 package com.github.seecret.spring_task.dto.assigned;
 
-import com.github.seecret.spring_task.dto.task.Task;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +11,7 @@ public class Assigned {
 
     private Long id;
 
-    private Task task;
+    private Long taskId;
 
     private String firstNameAndLastName;
 

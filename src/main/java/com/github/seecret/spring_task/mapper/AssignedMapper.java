@@ -25,6 +25,7 @@ public class AssignedMapper {
     public Assigned toAssigned(AssignedEntity entity) {
         Assigned assigned = new Assigned();
         assigned.setId(entity.getId());
+        assigned.setTaskId(entity.getTask().getId());
         assigned.setFirstNameAndLastName(entity.getFirstNameAndLastName());
         assigned.setEmail(entity.getEmail());
         assigned.setPhone(entity.getPhone());

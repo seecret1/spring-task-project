@@ -1,7 +1,6 @@
 package com.github.seecret.spring_task.dto.task;
 
 import com.github.seecret.spring_task.dto.assigned.Assigned;
-import com.github.seecret.spring_task.dto.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ public class Task {
 
     private Long id;
 
-    private User user;
+    private Long userId;
 
     private TaskStatus status;
 

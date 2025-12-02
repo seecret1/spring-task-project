@@ -1,7 +1,7 @@
 package com.github.seecret.spring_task.entity;
 
-import com.github.seecret.spring_task.dto.task.Task;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,10 +25,13 @@ public class UserEntity {
     @Column(name = "first_name_and_last_name", nullable = false)
     private String firstNameAndLastName;
 
+    @Email
     @Column(name = "email")
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
     mappedBy = "user")
+
+
     private List<TaskEntity> tasks;
 }
